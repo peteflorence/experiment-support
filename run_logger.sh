@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
+
+TEST=$4_speed$1_noise$3
+TIME=$(date +%Y%m%d_%H%M%S)
+TESTDIR=race/$TEST/$TIME
+mkdir -p $TESTDIR
+cd $TESTDIR
+
 rosrun trajectory_selector experiment_logger
-
-TEST="mpc_speed10_noise0_1"
-
-TIME="$(date +%Y%m%d_%H%M%S)"
-mkdir -p $TEST/"${TIME}"
-mv *.txt $TEST/"${TIME}"
-
 
 
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
